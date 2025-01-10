@@ -1,4 +1,3 @@
-Segue o README baseado nas especificações do projeto de compra de ingressos:
 
 ---
 
