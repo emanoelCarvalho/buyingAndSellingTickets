@@ -93,5 +93,3 @@ Este projeto foi desenvolvido por:
 Caso tenha dúvidas ou sugestões, entre em contato pelo email: [hemanoel718@gmail.com](mailto:hemanoel718@gmail.com).
 
 --- 
-
-Se precisar de mais ajustes ou complementos, é só avisar! 😊
