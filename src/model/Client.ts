@@ -22,43 +22,43 @@ class Client {
     this.agreement = agreement;
   }
 
-  getName(): string {
+  public getName(): string {
     return this.name;
   }
 
-  setName(name: string): void {
+  public setName(name: string): void {
     this.name = name;
   }
 
-  getAddress(): string {
+  public getAddress(): string {
     return this.address;
   }
 
-  setAddress(address: string): void {
+  public setAddress(address: string): void {
     this.address = address;
   }
 
-  getCpf(): string {
+  public getCpf(): string {
     return this.cpf;
   }
 
-  setCpf(cpf: string): void {
+  public setCpf(cpf: string): void {
     this.cpf = cpf;
   }
 
-  getDateOfBirth(): string {
+  public getDateOfBirth(): string {
     return this.dateOfBirth;
   }
 
-  setDateOfBirth(dateOfBirth: string): void {
+  public setDateOfBirth(dateOfBirth: string): void {
     this.dateOfBirth = dateOfBirth;
   }
 
-  getAgreement(): boolean {
+  public getAgreement(): boolean {
     return this.agreement;
   }
 
-  setAgreement(agreement: boolean): void {
+  public setAgreement(agreement: boolean): void {
     this.agreement = agreement;
   }
 
@@ -67,4 +67,4 @@ class Client {
   }
 }
 
-export default { Client };
+export default Client;

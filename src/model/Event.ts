@@ -25,51 +25,51 @@ class Event {
     this.capacity = capacity;
   }
 
-  getName(): string {
+  public getName(): string {
     return this.name;
   }
 
-  setName(name: string): void {
+  public setName(name: string): void {
     this.name = name;
   }
 
-  getType(): string {
+  public getType(): string {
     return this.type;
   }
 
-  setType(type: string): void {
+  public setType(type: string): void {
     this.type = type;
   }
 
-  getArtists(): string[] {
+  public getArtists(): string[] {
     return this.artists;
   }
 
-  setArtists(artists: string[]): void {
+  public setArtists(artists: string[]): void {
     this.artists = artists;
   }
 
-  getDate(): Date {
+  public getDate(): Date {
     return this.date;
   }
 
-  setDate(date: Date): void {
+  public setDate(date: Date): void {
     this.date = date;
   }
 
-  getSession(): string {
+  public getSession(): string {
     return this.session;
   }
 
-  setSession(session: string): void {
+  public setSession(session: string): void {
     this.session = session;
   }
 
-  getCapacity(): number {
+  public getCapacity(): number {
     return this.capacity;
   }
 
-  setCapacity(capacity: number): void {
+  public setCapacity(capacity: number): void {
     this.capacity = capacity;
   }
 
