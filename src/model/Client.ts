@@ -1,11 +1,11 @@
 class Client {
   private static countId = 1;
   private id: number;
-  private name: string;
-  private address: string;
-  private cpf: string;
-  private dateOfBirth: string;
-  private agreement: boolean;
+  public name: string;
+  public address: string;
+  public cpf: string;
+  public dateOfBirth: string;
+  public agreement: boolean;
 
   constructor(
     name: string,

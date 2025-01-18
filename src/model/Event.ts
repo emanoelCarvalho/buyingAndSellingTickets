@@ -1,12 +1,12 @@
 class Event {
   private static countId = 1;
   private id: number;
-  private name: string;
-  private type: string;
-  private artists: string[];
-  private date: Date;
-  private session: string;
-  private capacity: number;
+  public name: string;
+  public type: string;
+  public artists: string[];
+  public date: Date;
+  public session: string;
+  public capacity: number;
 
   constructor(
     name: string,

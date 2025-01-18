@@ -1,8 +1,8 @@
 import type Client from "./Client";
 
 class NodeOfQueue {
-  private client: Client;
-  private priority: boolean;
+  public client: Client;
+  public priority: boolean;
   public next: NodeOfQueue | null;
 
   constructor(client: Client, priority: boolean = false) {
@@ -33,8 +33,8 @@ class NodeOfQueue {
 }
 
 class Queue {
-  private start: NodeOfQueue | null;
-  private end: NodeOfQueue | null;
+  public start: NodeOfQueue | null;
+  public end: NodeOfQueue | null;
 
   constructor() {
     this.start = null;
@@ -88,3 +88,5 @@ class Queue {
     return clients;
   }
 }
+
+export default Queue;

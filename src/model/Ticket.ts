@@ -2,10 +2,10 @@ import type Client from "./Client";
 import type Event from "./Event";
 
 class Ticket {
-  private client: Client;
-  private event: Event;
-  private session: string;
-  private seat: string;
+  public client: Client;
+  public event: Event;
+  public session: string;
+  public seat: string;
 
   constructor(client: Client, event: Event, session: string, seat: string) {
     this.client = client;
