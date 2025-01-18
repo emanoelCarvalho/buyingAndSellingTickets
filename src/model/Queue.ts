@@ -3,7 +3,7 @@ import type Client from "./Client";
 class NodeOfQueue {
   private client: Client;
   private priority: boolean;
-  private next: NodeOfQueue | null;
+  public next: NodeOfQueue | null;
 
   constructor(client: Client, priority: boolean = false) {
     this.client = client;
@@ -29,5 +29,62 @@ class NodeOfQueue {
 
   public setPriority(priority: boolean): void {
     this.priority = priority;
+  }
+}
+
+class Queue {
+  private start: NodeOfQueue | null;
+  private end: NodeOfQueue | null;
+
+  constructor() {
+    this.start = null;
+    this.end = null;
+  }
+
+  public getInQueue(client: Client, priority: boolean = false): void {
+    const newNode = new NodeOfQueue(client, priority);
+
+    if (!this.start || priority) {
+      newNode.next = this.start;
+      this.start = newNode;
+      if (!this.end) {
+        this.end = newNode;
+      }
+    } else {
+      let current = this.start;
+
+      while (current.next) {
+        current = current.next;
+      }
+      current.next = newNode;
+      this.end = newNode;
+    }
+  }
+
+  public removeFromQueue(): Client | null {
+    if (!this.start) {
+      return null;
+    }
+
+    const clientRemoved = this.start.getClient();
+
+    this.start = this.start.next;
+    if (!this.start) {
+      this.end = null;
+    }
+
+    return clientRemoved;
+  }
+
+  public listQueue(): Client[] {
+    let clients: Client[] = [];
+    let current = this.start;
+
+    while (current) {
+      clients = [...clients, current.getClient()];
+      current = current.next;
+    }
+
+    return clients;
   }
 }
