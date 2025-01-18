@@ -36,3 +36,5 @@ class Ticket {
     } - ${this.seat}`;
   }
 }
+
+export default Ticket;
