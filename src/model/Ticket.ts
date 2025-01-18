@@ -1,0 +1,38 @@
+import type Client from "./Client";
+import type Event from "./Event";
+
+class Ticket {
+  private client: Client;
+  private event: Event;
+  private session: string;
+  private seat: string;
+
+  constructor(client: Client, event: Event, session: string, seat: string) {
+    this.client = client;
+    this.event = event;
+    this.session = session;
+    this.seat = seat;
+  }
+
+  public getClient(): Client {
+    return this.client;
+  }
+
+  public getEvent(): Event {
+    return this.event;
+  }
+
+  public getSession(): string {
+    return this.session;
+  }
+
+  public getSeat(): string {
+    return this.seat;
+  }
+
+  toString(): string {
+    return `Ticket: ${this.client.getName()} - ${this.event.getName()} - ${
+      this.session
+    } - ${this.seat}`;
+  }
+}
