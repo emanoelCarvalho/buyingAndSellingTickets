@@ -1,5 +1,5 @@
 import type Client from "./client";
-import type Event from "./Event";
+import type Event from "./event";
 
 class Ticket {
   public client: Client;
