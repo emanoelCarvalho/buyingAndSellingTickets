@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import EventForm from './components/EventForm.vue';
-import BuyTicket from './components/BuyTicket.vue';
+
 </script>
 
 <template>
-  
+
 </template>
+
 
 <style scoped>
 header {
