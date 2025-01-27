@@ -1,0 +1,13 @@
+{
+  "clients": [
+    {
+      "id": 6,
+      "name": "Cleiton Rasta",
+      "address": "OLha a Pedra(de gelo)",
+      "cpf": "0000000000",
+      "dateOfBirth": "20/20/2001",
+      "agreement": true,
+      "hasConvenio": false
+    }
+  ]
+}

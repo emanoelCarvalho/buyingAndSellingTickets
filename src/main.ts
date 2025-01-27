@@ -1,11 +1,24 @@
-import './assets/main.css'
+import { createApp } from "vue";
+import App from "./App.vue";
+import { createVuetify } from "vuetify";
+import "vuetify/styles"; 
+import "@mdi/font/css/materialdesignicons.css"; 
+import * as components from "vuetify/components";
+import * as directives from "vuetify/directives";
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import axios from "axios";
+import VueAxios from "vue-axios";
 
-const app = createApp(App)
+const vuetify = createVuetify({
+  components,
+  directives,
+});
 
-app.use(router)
+axios.defaults.baseURL = "https://sua-api-base-url.com"; 
 
-app.mount('#app')
+const app = createApp(App);
+
+app.use(vuetify);
+app.use(VueAxios, axios);
+
+app.mount("#app");

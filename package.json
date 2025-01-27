@@ -5,14 +5,19 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "serve": "vue-cli-service serve --host 26.231.189.146 --port 8080",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "axios": "^1.7.9",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-axios": "^3.5.2",
+    "vue-router": "^4.5.0",
+    "vuetify": "^3.7.0-beta.1"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",

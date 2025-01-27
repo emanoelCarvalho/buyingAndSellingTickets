@@ -6,13 +6,15 @@ class Client {
   public cpf: string;
   public dateOfBirth: string;
   public agreement: boolean;
+  public hasConvenio: boolean; // Adicionado campo para convênio
 
   constructor(
     name: string,
     address: string,
     cpf: string,
     dateOfBirth: string,
-    agreement: boolean
+    agreement: boolean,
+    hasConvenio: boolean // Novo parâmetro
   ) {
     this.id = Client.countId++;
     this.name = name;
@@ -20,6 +22,7 @@ class Client {
     this.cpf = cpf;
     this.dateOfBirth = dateOfBirth;
     this.agreement = agreement;
+    this.hasConvenio = hasConvenio; // Inicializando o novo campo
   }
 
   public getName(): string {
@@ -62,8 +65,16 @@ class Client {
     this.agreement = agreement;
   }
 
+  public getHasConvenio(): boolean {
+    return this.hasConvenio;
+  }
+
+  public setHasConvenio(hasConvenio: boolean): void {
+    this.hasConvenio = hasConvenio;
+  }
+
   public toString(): string {
-    return `Client: ${this.id} - ${this.name} - ${this.address} - ${this.cpf} - ${this.dateOfBirth} - ${this.agreement}`;
+    return `Client: ${this.id} - ${this.name} - ${this.address} - ${this.cpf} - ${this.dateOfBirth} - ${this.agreement} - ${this.hasConvenio}`;
   }
 }
 
