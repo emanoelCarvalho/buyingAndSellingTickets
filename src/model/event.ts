@@ -1,6 +1,6 @@
 class Event {
   private static countId = 1;
-  private id: number;
+  public id: number;
   public name: string;
   public type: string;
   public artists: string[];
