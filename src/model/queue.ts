@@ -44,20 +44,18 @@ class Queue {
   public getInQueue(client: Client, priority: boolean = false): void {
     const newNode = new NodeOfQueue(client, priority);
 
-    if (!this.start || priority) {
+    if (priority || !this.start) {
       newNode.next = this.start;
       this.start = newNode;
+
       if (!this.end) {
         this.end = newNode;
       }
     } else {
-      let current = this.start;
-
-      while (current.next) {
-        current = current.next;
+      if (this.end) {
+        this.end.next = newNode;
+        this.end = newNode;
       }
-      current.next = newNode;
-      this.end = newNode;
     }
   }
 
@@ -88,5 +86,4 @@ class Queue {
     return clients;
   }
 }
-
 export default Queue;
