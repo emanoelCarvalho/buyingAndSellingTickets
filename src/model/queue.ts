@@ -1,13 +1,12 @@
 import type Client from "./client";
+import type { IQueue } from "./interface/iqueue";
 
 class NodeOfQueue {
   public client: Client;
-  public priority: boolean;
   public next: NodeOfQueue | null;
 
-  constructor(client: Client, priority: boolean = false) {
+  constructor(client: Client) {
     this.client = client;
-    this.priority = priority;
     this.next = null;
   }
 
@@ -22,17 +21,9 @@ class NodeOfQueue {
   public getNext(): NodeOfQueue | null {
     return this.next;
   }
-
-  public isPriority(): boolean {
-    return this.priority;
-  }
-
-  public setPriority(priority: boolean): void {
-    this.priority = priority;
-  }
 }
 
-class Queue {
+class Queue implements IQueue {
   public start: NodeOfQueue | null;
   public end: NodeOfQueue | null;
 
@@ -41,21 +32,27 @@ class Queue {
     this.end = null;
   }
 
-  public getInQueue(client: Client, priority: boolean = false): void {
-    const newNode = new NodeOfQueue(client, priority);
+  public getInQueue(client: Client): void {
+    const newNode = new NodeOfQueue(client);
 
-    if (priority || !this.start) {
+    if (!this.start || newNode.client.agreement) {
+      // Se a fila estiver vazia ou se o cliente tem prioridade, ele vai para o início da fila
       newNode.next = this.start;
       this.start = newNode;
 
+      // Se a fila estava vazia, o novo nó será também o final da fila
       if (!this.end) {
         this.end = newNode;
       }
     } else {
-      if (this.end) {
-        this.end.next = newNode;
-        this.end = newNode;
+      // Caso contrário, insere no final da fila
+      let current = this.start;
+
+      while (current.next) {
+        current = current.next;
       }
+      current.next = newNode;
+      this.end = newNode;
     }
   }
 
@@ -86,4 +83,5 @@ class Queue {
     return clients;
   }
 }
+
 export default Queue;
