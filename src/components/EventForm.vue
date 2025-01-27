@@ -53,7 +53,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import EventService from "@/services/eventService"; // Importa o service
+import EventService from "@/services/eventService";
 
 export default defineComponent({
   data() {

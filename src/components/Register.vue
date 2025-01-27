@@ -104,7 +104,7 @@
 </template>
 
 <script>
-import Client from "@/model/Client";
+import Client from "@/model/client";
 import ClientService from "@/services/clientService";
 
 export default {

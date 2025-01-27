@@ -1,6 +1,6 @@
 class Event {
   private static countId = 1;
-  public id: number;
+  private id: number;
   public name: string;
   public type: string;
   public artists: string[];
@@ -23,6 +23,10 @@ class Event {
     this.date = date;
     this.session = session;
     this.capacity = capacity;
+  }
+
+  public getId(): number {
+    return this.id;
   }
 
   public getName(): string {

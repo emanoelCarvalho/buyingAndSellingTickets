@@ -1,18 +1,23 @@
-import api from "./api";
+import api from './api';  // Importe a configuração do axios
+
+const API_URL = "http://localhost:3000/clients";
 
 export default {
-  // Função para obter todos os clientes
-  getClients() {
-    return api.get("/clients");
+  async fetchClients() {
+    const timestamp = new Date().getTime();
+    const response = await api.get(`${API_URL}?_=${timestamp}`);
+    return response.data;
   },
-  
-  // Função para adicionar um novo cliente
-  addClient(client) {
-    return api.post("/clients", client);
+  async addClient(clientData: any) {
+    const response = await api.post(API_URL, clientData);
+    return response.data;
   },
-
-  // Função para excluir um cliente
-  deleteClient(id) {
-    return api.delete(`/clients/${id}`);
+  async updateClient(id: number, clientData: any) {
+    const response = await api.put(`${API_URL}/${id}`, clientData);
+    return response.data;
+  },
+  async deleteClient(id: number) {
+    const response = await api.delete(`${API_URL}/${id}`);
+    return response.data;
   }
 };

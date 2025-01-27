@@ -84,6 +84,7 @@
   </template>
   
   <script>
+  import eventService from "@/services/eventService";
   import Event from "@/model/event";
   import Client from "@/model/client";
   import Queue from "@/model/queue";
@@ -105,22 +106,9 @@
       this.loadEvents();
     },
     methods: {
-      // Load events from a JSON file
       async loadEvents() {
         try {
-          const response = await fetch("/path/to/events.json"); // Adjust the path
-          const eventsData = await response.json();
-          this.events = eventsData.map(
-            (e) =>
-              new Event(
-                e.name,
-                e.type,
-                e.artists,
-                new Date(e.date),
-                e.session,
-                e.capacity
-              )
-          );
+          this.events = await eventService.fetchEvents();
         } catch (error) {
           console.error("Failed to load events:", error);
         }

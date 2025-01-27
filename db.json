@@ -1,7 +1,7 @@
 {
   "clients": [
     {
-      "id": 6,
+      "id": "6",
       "name": "Cleiton Rasta",
       "address": "OLha a Pedra(de gelo)",
       "cpf": "0000000000",
@@ -11,6 +11,39 @@
     }
   ],
   "events": [
-    
-  ]
+    {
+      "id": "2288",
+      "name": "Show do Skillet",
+      "type": "Música",
+      "artists": [
+        "Skillet"
+      ],
+      "date": "2025-01-30",
+      "session": "Noite",
+      "capacity": "5000"
+    },
+    {
+      "id": "1797",
+      "name": "Show do Coldplay",
+      "type": "Música",
+      "artists": [
+        "ColdPlay"
+      ],
+      "date": "2025-01-08",
+      "session": "Noite",
+      "capacity": "50000"
+    },
+    {
+      "id": "f99d",
+      "name": "Evanecence",
+      "type": "Música",
+      "artists": [
+        "Evanecence"
+      ],
+      "date": "2025-01-24",
+      "session": "Noite",
+      "capacity": "100000"
+    }
+  ],
+  "tickets": []
 }

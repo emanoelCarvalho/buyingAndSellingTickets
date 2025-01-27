@@ -25,6 +25,10 @@ class Client {
     this.hasConvenio = hasConvenio; // Inicializando o novo campo
   }
 
+  public getId(): number { 
+    return this.id;
+  }
+
   public getName(): string {
     return this.name;
   }

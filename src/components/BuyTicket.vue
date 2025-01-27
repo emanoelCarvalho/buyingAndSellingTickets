@@ -1,141 +1,166 @@
 <template>
-    <v-container>
-      <v-row class="mb-4">
-        <v-col cols="12">
-          <h1>Compra de Ingresso</h1>
-          <v-select
-            v-model="selectedEvent"
-            :items="eventNames"
-            item-text="name"
-            item-value="id"
-            label="Escolha o Evento"
-            outlined
-            dense
-          ></v-select>
-        </v-col>
-      </v-row>
-  
-      <v-row v-if="selectedEvent" class="mb-4">
-        <v-col cols="12">
-          <h2>{{ selectedEvent.name }}</h2>
-          <p><strong>Data:</strong> {{ selectedEvent.date }}</p>
-          <p><strong>Capacidade:</strong> {{ selectedEvent.capacity }} pessoas</p>
-        </v-col>
-      </v-row>
-  
-      <v-row class="mb-4">
-        <v-col cols="12" sm="6">
-          <v-select
-            v-model="ticketType"
-            :items="ticketTypes"
-            label="Tipo de Ingresso"
-            outlined
-            dense
-          ></v-select>
-        </v-col>
-  
-        <v-col cols="12" sm="6">
-          <v-select
-            v-model="seat"
-            :items="seats"
-            label="Selecione seu assento"
-            outlined
-            dense
-          ></v-select>
-        </v-col>
-      </v-row>
-  
-      <v-row class="mb-4">
-        <v-col cols="12">
-          <v-select
-            v-model="selectedClient"
-            :items="clientsMock"
-            item-text="name"
-            item-value="id"
-            label="Cliente"
-            outlined
-            dense
-          ></v-select>
-        </v-col>
-      </v-row>
-  
-      <v-row class="mb-4">
-        <v-col cols="12">
-          <v-btn color="primary" @click="buyTicket">Comprar Ingresso</v-btn>
-        </v-col>
-      </v-row>
-  
-      <!-- Exibir o ingresso comprado -->
-      <v-row v-if="ticket" class="mt-4">
-        <v-col cols="12">
-          <v-card>
-            <v-card-title>{{ ticket.toString() }}</v-card-title>
-            <v-card-subtitle>{{ ticket.getSession() }}</v-card-subtitle>
-            <v-card-text>
-              <p><strong>Assento:</strong> {{ ticket.getSeat() }}</p>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </template>
+  <v-container>
+    <v-row class="mb-4">
+      <v-col cols="12">
+        <h1>Compra de Ingresso</h1>
+        <v-select v-model="selectedEvent" :items="eventNames" item-text="name" item-value="id" label="Escolha o Evento"
+          outlined dense></v-select>
+      </v-col>
+    </v-row>
+
+    <v-row v-if="selectedEvent" class="mb-4">
+      <v-col cols="12">
+        <h2>{{ selectedEvent.name }}</h2>
+        <p><strong>Data:</strong> {{ selectedEvent.date }}</p>
+        <p><strong>Capacidade:</strong> {{ selectedEvent.capacity }} pessoas</p>
+      </v-col>
+    </v-row>
+
+    <v-row class="mb-4">
+      <v-col cols="12" sm="6">
+        <v-select v-model="ticketType" :items="ticketTypes" label="Tipo de Ingresso" outlined dense></v-select>
+      </v-col>
+
+      <v-col cols="12" sm="6">
+        <v-select v-model="seat" :items="seats" label="Selecione seu assento" outlined dense></v-select>
+      </v-col>
+    </v-row>
+
+    <v-row class="mb-4">
+      <v-col cols="12">
+        <v-select v-model="selectedClient" :items="clientNames" item-text="name" item-value="id" label="Cliente"
+          outlined dense></v-select>
+      </v-col>
+    </v-row>
+
+    <v-row class="mb-4">
+      <v-col cols="12">
+        <v-btn color="primary" @click="buyTicket">Comprar Ingresso</v-btn>
+      </v-col>
+    </v-row>
+
+    <!-- Exibir o ingresso comprado -->
+    <v-row v-if="ticket" class="mt-4">
+      <v-col cols="12">
+        <v-card>
+          <v-card-title>{{ ticket.toString() }}</v-card-title>
+          <v-card-subtitle>{{ ticket.getSession() }}</v-card-subtitle>
+          <v-card-text>
+            <p><strong>Assento:</strong> {{ ticket.getSeat() }}</p>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import clientService from "@/services/clientService";
+import eventService from "@/services/eventService";
 import Client from "@/model/client";
 import Event from "@/model/event";
 import Ticket from "@/model/ticket";
-
-// Dados mockados diretamente nas classes Client e Event
-const clientsMock = [
-  new Client(1,"João Silva", "Rua A, 123", "123.456.789-00", "1990-01-01", true),
-  new Client(2,"Maria Oliveira", "Avenida B, 456", "987.654.321-00", "1985-05-10", true),
-  new Client(3,"Carlos Souza", "Praça C, 789", "135.246.357-00", "1992-07-20", false)
-];
-
-const eventsMock = [
-  new Event(1,"Festival de Música", "Festival", ["Artista 1", "Artista 2"], new Date("2025-06-15"), "Sessão 1", 500),
-  new Event(2,"Show de Comédia", "Comédia", ["Artista 3", "Artista 4"], new Date("2025-07-10"), "Sessão 2", 300)
-];
+import axios from "axios";
 
 export default defineComponent({
   data() {
     return {
-      eventsMock, // Dados mockados dos eventos
-      clientsMock, // Dados mockados dos clientes
-      selectedEvent: null as Event | null, // Evento selecionado
-      selectedClient: null as Client | null, // Cliente selecionado
+      events: [] as Event[],
+      clients: [] as Client[], 
+      selectedEvent: null as Event | null,
+      selectedClient: null as Client | null,
       ticketType: "",
       seat: "",
-      ticket: null as Ticket | null, // Ingresso que será gerado
+      ticket: null as Ticket | null,
       ticketTypes: ["Camarote", "Pista", "VIP", "Open Bar", "Foto com o Artista"],
       seats: ["A1", "A2", "B1", "B2", "C1", "C2"],
     };
   },
+  mounted() {
+    // Carregar eventos e clientes ao montar o componente
+    this.loadEvents();
+    this.loadClients();
+  },
   methods: {
-    // Função para gerar o ingresso
-    buyTicket() {
+    async loadEvents() {
+      try {
+        const response = await eventService.fetchEvents();
+        console.log(response);
+        this.events = response;
+      } catch (error) {
+        console.error("Erro ao carregar eventos:", error);
+      }
+    },
+    async loadClients() {
+      try {
+        const response = await clientService.fetchClients();
+        console.log(response);
+        this.clients = response;
+      } catch (error) {
+        console.error("Erro ao carregar clientes:", error);
+      }
+    },
+    async buyTicket() {
       if (this.selectedEvent && this.selectedClient && this.seat) {
-        const newTicket = new Ticket(
-          this.selectedClient,
-          this.selectedEvent,
+        // Ensure selectedEvent is an instance of Event, if not create one
+        const event = this.selectedEvent instanceof Event ? this.selectedEvent : new Event(
+          this.selectedEvent.name,
+          this.selectedEvent.type,
+          this.selectedEvent.artists,
+          new Date(this.selectedEvent.date),
           this.selectedEvent.session,
+          this.selectedEvent.capacity
+        );
+
+        const client = this.selectedClient instanceof Client ? this.selectedClient : new Client(
+          this.selectedClient.name,
+          this.selectedClient.address,
+          this.selectedClient.cpf,
+          this.selectedClient.dateOfBirth,
+          this.selectedClient.agreement,
+          this.selectedClient.hasConvenio
+        );
+
+        const newTicket = new Ticket(
+          client,
+          event,
+          event.session,
           this.seat
         );
-        this.ticket = newTicket; // Atribuindo o ingresso gerado
+        this.ticket = newTicket;
+        await this.saveTicket(newTicket);
       }
-    }
+    },
+    async saveTicket(ticket: Ticket) {
+      try {
+        await axios.post(`${API_URL}/tickets`, {
+          clientId: ticket.client.getId(),
+          eventId: ticket.event.getId(),
+          session: ticket.session,
+          seat: ticket.seat,
+        });
+      } catch (error) {
+        console.error("Erro ao salvar ingresso:", error);
+      }
+    },
   },
   computed: {
-    // Lista de nomes dos eventos
     eventNames() {
-      return this.eventsMock.map((event) => ({
-        id: event,
+      return this.events.map((event) => ({
+        id: event.getId(),
         name: event.name,
-        date: event.date.toLocaleDateString(),
-        capacity: event.capacity
+        date: new Date(event.date).toLocaleDateString(),
+        capacity: event.capacity,
       }));
-    }
-  }
+    },
+
+    clientNames() {
+      return this.clients.map((client) => ({
+        id: client.getId(),
+        name: client.name,
+      }));
+    },
+  },
 });
 </script>
