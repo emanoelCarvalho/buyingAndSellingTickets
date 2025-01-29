@@ -180,8 +180,7 @@ Este projeto foi desenvolvido como parte da disciplina de **Algoritmos e Estrutu
 📧 Para dúvidas ou sugestões, entre em contato:  
 - **Emanoel Carvalho**: [hemanoel718@gmail.com](mailto:hemanoel718@gmail.com)  
 - **Cleiton Lucas**: [clrs1@discente.ifpe.edu.br](mailto:clrs1@discente.ifpe.edu.br)  
-- **Gean Lima**: [gean83123@gmail.com](mailto:gean83123@gmail.com)
-]  
+- **Gean Lima**: [gean83123@gmail.com](mailto:gean83123@gmail.com)  
 
 ---
 
