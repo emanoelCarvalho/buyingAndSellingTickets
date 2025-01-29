@@ -1,6 +1,5 @@
-import type Client from "./client";
+import Client from "./client";
 import type { IQueue } from "./interface/iqueue";
-
 class NodeOfQueue {
   public client: Client;
   public next: NodeOfQueue | null;
@@ -30,24 +29,28 @@ class Queue implements IQueue {
   constructor() {
     this.start = null;
     this.end = null;
+
+    const initialClients = [
+      new Client("Alice", "Rua A, 123", "111.111.111-11", "1990-01-01", false),
+      new Client("Bob", "Rua B, 456", "222.222.222-22", "1985-05-12", true),  // Conveniado
+      new Client("Charlie", "Rua C, 789", "333.333.333-33", "2000-07-23", false),
+      new Client("Diana", "Rua D, 321", "444.444.444-44", "1998-11-30", true),  // Conveniada
+    ];
+
+    initialClients.forEach(client => this.getInQueue(client));
   }
 
   public getInQueue(client: Client): void {
     const newNode = new NodeOfQueue(client);
 
     if (!this.start || newNode.client.hasConvenio) {
-      // Se a fila estiver vazia ou se o cliente tem prioridade, ele vai para o início da fila
       newNode.next = this.start;
       this.start = newNode;
-
-      // Se a fila estava vazia, o novo nó será também o final da fila
       if (!this.end) {
         this.end = newNode;
       }
     } else {
-      // Caso contrário, insere no final da fila
       let current = this.start;
-
       while (current.next) {
         current = current.next;
       }
@@ -62,25 +65,31 @@ class Queue implements IQueue {
     }
 
     const clientRemoved = this.start.getClient();
-
     this.start = this.start.next;
     if (!this.start) {
       this.end = null;
     }
-
     return clientRemoved;
   }
 
   public listQueue(): Client[] {
     let clients: Client[] = [];
     let current = this.start;
-
     while (current) {
-      clients = [...clients, current.getClient()];
+      clients.push(current.getClient());
       current = current.next;
     }
-
     return clients;
+  }
+
+  public size(): number {
+    let count = 0;
+    let current = this.start;
+    while (current) {
+      count++;
+      current = current.next;
+    }
+    return count;
   }
 }
 

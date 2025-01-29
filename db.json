@@ -15,6 +15,14 @@
       "cpf": "4123",
       "dateOfBirth": "22/11/2002",
       "hasConvenio": true
+    },
+    {
+      "id": "7ec4",
+      "name": "Emanoel",
+      "address": "email3",
+      "cpf": "4567",
+      "dateOfBirth": "02/02/2002",
+      "hasConvenio": true
     }
   ],
   "events": [
