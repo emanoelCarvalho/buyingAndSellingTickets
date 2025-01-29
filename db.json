@@ -60,5 +60,15 @@
       "capacity": "100000"
     }
   ],
-  "tickets": []
+  "tickets": [
+    {
+      "id": "bhkortup6",
+      "clientId": "95a7",
+      "clientName": "Kamila",
+      "eventId": "f99d",
+      "eventName": "Evanecence",
+      "seat": "A2",
+      "isVip": true
+    }
+  ]
 }
