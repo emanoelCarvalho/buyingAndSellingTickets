@@ -99,6 +99,12 @@ export default {
         this.client = response.data[0];
         this.closeCpfModal();
 
+        localStorage.setItem("cpf", this.cpf);
+        localStorage.setItem("eventId", this.eventId.toString());
+
+        console.log("Cliente encontrado:", this.client);
+        console.log("Evento selecionado:", this.eventId);
+
         // Corrigindo a lógica de 'hasConvenio'
         this.hasConvenio = this.client?.hasConvenio ? "meia-fila" : "ultima-fila";
 
