@@ -23,6 +23,14 @@
       "cpf": "4567",
       "dateOfBirth": "02/02/2002",
       "hasConvenio": true
+    },
+    {
+      "id": "eddd",
+      "name": "Gean",
+      "address": "email5",
+      "cpf": "8963",
+      "dateOfBirth": "01/01/2000",
+      "hasConvenio": true
     }
   ],
   "events": [
@@ -68,6 +76,15 @@
       "eventId": "f99d",
       "eventName": "Evanecence",
       "seat": "A2",
+      "isVip": true
+    },
+    {
+      "id": "17a73809-414f-49b8-975b-6ee26ea5674c",
+      "clientId": "7ec4",
+      "clientName": "Emanoel",
+      "eventId": 2,
+      "eventName": "Show do Coldplay",
+      "seat": "A1",
       "isVip": true
     }
   ]

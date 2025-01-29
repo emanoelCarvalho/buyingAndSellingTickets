@@ -99,8 +99,19 @@ export default {
         this.client = response.data[0];
         this.closeCpfModal();
 
+        // Armazenar CPF e ID do evento no localStorage
         localStorage.setItem("cpf", this.cpf);
         localStorage.setItem("eventId", this.eventId.toString());
+
+        // Encontrar o evento selecionado
+        const selectedEvent = this.events.find(event => event.getId() === this.eventId);
+
+        if (selectedEvent) {
+          // Armazenar detalhes do evento no localStorage
+          localStorage.setItem("eventName", selectedEvent.name);
+          localStorage.setItem("eventDate", selectedEvent.date.toISOString());
+          localStorage.setItem("eventCapacity", selectedEvent.capacity.toString());
+        }
 
         console.log("Cliente encontrado:", this.client);
         console.log("Evento selecionado:", this.eventId);
@@ -110,7 +121,6 @@ export default {
 
         const position = this.hasConvenio === "meia-fila" ? Math.floor(this.queue.length / 2) : this.queue.length;
 
-        console.log()
         console.log(`Usuário ${this.client?.name} com CPF ${this.cpf} irá para a ${this.hasConvenio} na fila para o evento ${this.eventId}`);
 
         this.$router.push({

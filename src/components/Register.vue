@@ -107,7 +107,7 @@ export default {
           await ClientService.addClient(this.form);
           this.resetForm();
           alert("Client added!");
-          this.$router.push('/home'); // Redireciona para /home após o sucesso
+          this.$router.push('/home'); 
         } else {
           console.log("Form is invalid");
         }
@@ -125,7 +125,7 @@ export default {
       };
     },
     goToHome() {
-      this.$router.push('/'); // Redireciona diretamente para o /home
+      this.$router.push('/home'); // Redireciona diretamente para o /home
     },
   },
 };

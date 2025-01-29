@@ -18,12 +18,12 @@
   </v-row>
 
   <v-row v-if="selectedEvent" class="mb-4">
-    <v-col cols="12">
-      <h2>{{ selectedEvent.name || "Evento não informado" }}</h2>
-      <p><strong>Data:</strong> {{ selectedEvent.date ? formatDate(selectedEvent.date) : "Data não disponível" }}</p>
-      <p><strong>Capacidade:</strong> {{ selectedEvent.capacity ? `${selectedEvent.capacity} pessoas` : "Capacidade não informada" }}</p>
-    </v-col>
-  </v-row>
+  <v-col cols="12">
+    <h2>{{ selectedEvent.name || "Evento não informado" }}</h2>
+    <p><strong>Data:</strong> {{ selectedEvent.date ? formatDate(selectedEvent.date) : "Data não disponível" }}</p>
+    <p><strong>Capacidade:</strong> {{ selectedEvent.capacity ? `${selectedEvent.capacity} pessoas` : "Capacidade não informada" }}</p>
+  </v-col>
+</v-row>
 
   <v-row class="mb-4">
     <v-col cols="12">
@@ -121,17 +121,30 @@ export default defineComponent({
       }
     },
     restoreFromLocalStorage() {
-      const storedCpf = localStorage.getItem("cpf");
-      const storedEventId = localStorage.getItem("eventId");
+  const storedCpf = localStorage.getItem("cpf");
+  const storedEventId = localStorage.getItem("eventId");
+  const storedEventName = localStorage.getItem("eventName");
+  const storedEventDate = localStorage.getItem("eventDate");
+  const storedEventCapacity = localStorage.getItem("eventCapacity");
 
-      if (storedCpf && this.clients.length > 0) {
-        this.selectedClient = this.clients.find(client => client.cpf === storedCpf) || null;
-      }
+  if (storedCpf && this.clients.length > 0) {
+    this.selectedClient = this.clients.find(client => client.cpf === storedCpf) || null;
+  }
 
-      if (storedEventId && this.events.length > 0) {
-        this.selectedEvent = this.events.find(event => event.id === Number(storedEventId)) || null;
-      }
-    },
+  if (storedEventId && this.events.length > 0) {
+    this.selectedEvent = this.events.find(event => event.id === Number(storedEventId)) || null;
+
+    // Se o evento não for encontrado na lista, mas os detalhes estiverem no localStorage, criar um objeto de evento
+    if (!this.selectedEvent && storedEventName && storedEventDate && storedEventCapacity) {
+      this.selectedEvent = {
+        id: Number(storedEventId),
+        name: storedEventName,
+        date: new Date(storedEventDate),
+        capacity: Number(storedEventCapacity),
+      };
+    }
+  }
+},
     formatDate(dateString: string) {
       if (!dateString) return "Data indisponível";
       try {
