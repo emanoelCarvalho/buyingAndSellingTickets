@@ -1,39 +1,42 @@
 <template>
-  <v-container>
-    <!-- Botão "Já possui cadastro" -->
-    <v-btn color="secondary" @click="goToHome">Já possui cadastro</v-btn>
-
-    <!-- Formulário de Registro -->
-    <v-card class="mx-auto" max-width="500">
-      <v-card-title class="text-h5">Register Client</v-card-title>
+  <v-container class="d-flex justify-center align-center fill-height">
+    <v-card class="mx-auto pa-6 elevation-5 rounded-lg" max-width="500">
+      <v-card-title class="text-h5 font-weight-bold text-primary">
+        Register Client
+      </v-card-title>
 
       <v-card-text>
         <v-form ref="form" v-model="isFormValid" @submit.prevent="handleSubmit">
-          <!-- Name -->
           <v-text-field
             label="Name"
             v-model="form.name"
             :rules="[rules.required]"
             required
+            outlined
+            dense
+            color="primary"
           ></v-text-field>
 
-          <!-- Address -->
           <v-text-field
             label="Address"
             v-model="form.address"
             :rules="[rules.required]"
             required
+            outlined
+            dense
+            color="primary"
           ></v-text-field>
 
-          <!-- CPF -->
           <v-text-field
             label="CPF"
             v-model="form.cpf"
             :rules="[rules.required]"
             required
+            outlined
+            dense
+            color="primary"
           ></v-text-field>
 
-          <!-- Date of Birth -->
           <v-menu
             v-model="menu"
             :close-on-content-click="false"
@@ -47,6 +50,9 @@
                 prepend-icon="mdi-calendar"
                 v-bind="attrs"
                 v-on="on"
+                outlined
+                dense
+                color="primary"
               ></v-text-field>
             </template>
             <v-date-picker
@@ -55,22 +61,27 @@
             ></v-date-picker>
           </v-menu>
 
-          <!-- Has Convenio -->
           <v-checkbox
             v-model="form.hasConvenio"
             label="Has Convenio"
+            color="primary"
           ></v-checkbox>
         </v-form>
       </v-card-text>
 
-      <v-card-actions>
-        <!-- Submit Button -->
-        <v-btn color="primary" :disabled="!isFormValid" @click="handleSubmit">
-          Submit
+      <v-card-actions class="d-flex justify-space-between">
+        <v-btn color="secondary" outlined @click="goToHome">
+          Já possui cadastro
         </v-btn>
 
-        <!-- Reset Button -->
-        <v-btn text @click="resetForm">Reset</v-btn>
+        <div>
+          <v-btn color="error" text class="mr-2" @click="resetForm">
+            Reset
+          </v-btn>
+          <v-btn color="primary" :disabled="!isFormValid" @click="handleSubmit">
+            Submit
+          </v-btn>
+        </div>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -132,7 +143,7 @@ export default {
 </script>
 
 <style scoped>
-.mx-auto {
-  margin: auto;
+.fill-height {
+  min-height: 100vh;
 }
 </style>

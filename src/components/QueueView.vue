@@ -1,16 +1,26 @@
 <template>
-  <div class="queue">
-    <h1>Fila de Espera para o Evento</h1>
-    <p>Evento: {{ eventName }}</p>
-    <p>Sua posição atual: {{ userPosition }}</p>
-    <p>Total de pessoas na fila: {{ queue.size() }}</p>
-
-    <ul>
-      <li v-for="(person, index) in queueList()" :key="person.getId()">
-        {{ index + 1 }}. {{ person.name }}
-      </li>
-    </ul>
-  </div>
+  <v-container class="queue">
+    <v-card class="text-center pa-6">
+      <v-card-title class="text-h5 font-weight-bold">
+        Fila de Espera para o Evento
+      </v-card-title>
+      <v-card-subtitle class="text-h6 mb-4">
+        Evento: {{ eventName }}
+      </v-card-subtitle>
+      <v-divider></v-divider>
+      <v-card-text>
+        <p class="text-body-1">Sua posição atual: <strong>{{ userPosition }}</strong></p>
+        <p class="text-body-1">Total de pessoas na fila: <strong>{{ queue.size() }}</strong></p>
+      </v-card-text>
+      <v-list dense>
+        <v-list-item v-for="(person, index) in queueList()" :key="person.getId()">
+          <v-list-item-content>
+            <v-list-item-title>{{ index + 1 }}. {{ person.name }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-card>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -75,9 +85,13 @@ export default {
 <style scoped>
 .queue {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   height: 100vh;
+}
+
+.text-center {
+  max-width: 600px;
+  width: 100%;
 }
 </style>

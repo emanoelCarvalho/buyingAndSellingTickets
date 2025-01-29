@@ -31,6 +31,14 @@
       "cpf": "8963",
       "dateOfBirth": "01/01/2000",
       "hasConvenio": true
+    },
+    {
+      "id": "32e0",
+      "name": "Mauriciélia",
+      "address": "ruab",
+      "cpf": "1111",
+      "dateOfBirth": "01/01/1999",
+      "hasConvenio": true
     }
   ],
   "events": [
@@ -66,6 +74,17 @@
       "date": "2025-01-24",
       "session": "Noite",
       "capacity": "100000"
+    },
+    {
+      "id": "5b55",
+      "name": "Slipknot",
+      "type": "Música",
+      "artists": [
+        "Corey Taylor"
+      ],
+      "date": "2025-10-11",
+      "session": "noite",
+      "capacity": "50000"
     }
   ],
   "tickets": [
@@ -85,6 +104,33 @@
       "eventId": 2,
       "eventName": "Show do Coldplay",
       "seat": "A1",
+      "isVip": true
+    },
+    {
+      "id": "ecf20df3-8b26-4408-b2ec-5f2613695440",
+      "clientId": "eddd",
+      "clientName": "Gean",
+      "eventId": 6,
+      "eventName": "Evanecence",
+      "seat": "B1",
+      "isVip": true
+    },
+    {
+      "id": "85ed56ad-7ac1-4924-8b26-777de4329824",
+      "clientId": "32e0",
+      "clientName": "Mauriciélia",
+      "eventId": 2,
+      "eventName": "Show do Coldplay",
+      "seat": "C1",
+      "isVip": true
+    },
+    {
+      "id": "d85fb081-7572-4c2b-ad2e-fdecef76d961",
+      "clientId": "32e0",
+      "clientName": "Mauriciélia",
+      "eventId": 2,
+      "eventName": "Show do Coldplay",
+      "seat": "C1",
       "isVip": true
     }
   ]

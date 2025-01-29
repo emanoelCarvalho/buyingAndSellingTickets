@@ -2,22 +2,25 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="12">
-        <h1 class="text-center">Eventos Disponíveis</h1>
+        <h1 class="text-center text-primary font-weight-bold">Eventos Disponíveis</h1>
       </v-col>
 
       <v-col v-for="event in events" :key="event.getId()" cols="12" md="6" lg="4">
-        <v-card class="ma-4">
-          <v-card-title>{{ event.name }}</v-card-title>
-          <v-card-subtitle>
-            Tipo: {{ event.type }} | Data: {{ event.date }} | Sessão: {{ event.session }}
+        <v-card class="ma-4 elevation-5 rounded-lg">
+          <v-card-title class="text-h6 font-weight-bold text-primary">
+            {{ event.name }}
+          </v-card-title>
+          <v-card-subtitle class="text-grey-darken-1">
+            <v-icon class="mr-1">mdi-calendar</v-icon> {{ event.date }} |
+            <v-icon class="mr-1">mdi-ticket</v-icon> {{ event.session }}
           </v-card-subtitle>
-          <v-card-text>
-            <p>Artistas: {{ event.artists.join(", ") }}</p>
-            <p>Capacidade: {{ event.capacity }}</p>
+          <v-card-text class="text-body-2">
+            <p><v-icon class="mr-1">mdi-account-music</v-icon> Artistas: {{ event.artists.join(", ") }}</p>
+            <p><v-icon class="mr-1">mdi-seat</v-icon> Capacidade: {{ event.capacity }}</p>
           </v-card-text>
-          <v-card-actions>
-            <v-btn color="primary" @click="buyTicket(event.getId())">
-              Comprar Ingresso
+          <v-card-actions class="justify-end">
+            <v-btn color="primary" class="rounded-lg" @click="buyTicket(event.getId())">
+              <v-icon left>mdi-cart</v-icon> Comprar Ingresso
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -25,15 +28,17 @@
     </v-row>
 
     <!-- Modal de CPF -->
-    <v-dialog v-model="showCpfModal" max-width="500px">
-      <v-card>
-        <v-card-title>Informe o CPF</v-card-title>
+    <v-dialog v-model="showCpfModal" max-width="450">
+      <v-card class="pa-4">
+        <v-card-title class="text-h6 font-weight-bold">Informe o CPF</v-card-title>
         <v-card-text>
-          <v-text-field v-model="cpf" label="CPF" outlined />
+          <v-text-field v-model="cpf" label="CPF" outlined dense color="primary" />
         </v-card-text>
-        <v-card-actions>
-          <v-btn @click="closeCpfModal">Cancelar</v-btn>
-          <v-btn color="primary" @click="validateCpf">Validar CPF</v-btn>
+        <v-card-actions class="justify-space-between">
+          <v-btn color="grey darken-1" text @click="closeCpfModal">Cancelar</v-btn>
+          <v-btn color="primary" class="rounded-lg" @click="validateCpf">
+            <v-icon left>mdi-check</v-icon> Validar CPF
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -148,5 +153,14 @@ export default {
 <style scoped>
 .text-center {
   text-align: center;
+}
+
+.elevation-5 {
+  transition: all 0.3s ease;
+}
+
+.elevation-5:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
 }
 </style>

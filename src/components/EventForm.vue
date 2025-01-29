@@ -1,13 +1,13 @@
 <template>
   <v-container>
-    <v-row class="mb-4">
+    <v-row class="mb-4 text-center">
       <v-col cols="12">
-        <h1>Cadastrar Eventos</h1>
+        <h1 class="title">Cadastrar Eventos</h1>
       </v-col>
     </v-row>
-    <v-row class="mb-4">
-      <v-col cols="12">
-        <v-btn color="primary" class="mr-2" @click="openDialog">
+    <v-row class="mb-4 d-flex justify-center">
+      <v-col cols="12" md="6" class="text-center">
+        <v-btn color="primary" class="btn-primary" @click="openDialog">
           Criar Evento
         </v-btn>
       </v-col>
@@ -16,7 +16,7 @@
     <!-- Modal -->
     <v-dialog v-model="dialog" max-width="500px">
       <v-card>
-        <v-card-title class="text-h6">Cadastrar Evento</v-card-title>
+        <v-card-title class="text-h6 primary-title">Cadastrar Evento</v-card-title>
         <v-card-text>
           <v-text-field v-model="form.name" label="Nome do Evento" outlined dense></v-text-field>
           <v-text-field v-model="form.type" label="Tipo do Evento" outlined dense></v-text-field>
@@ -25,25 +25,24 @@
           <v-text-field v-model="form.session" label="Sessão" outlined dense></v-text-field>
           <v-text-field v-model="form.capacity" label="Capacidade" type="number" outlined dense></v-text-field>
         </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="success" @click="createEvent">Salvar</v-btn>
-          <v-btn color="error" @click="closeDialog">Cancelar</v-btn>
+        <v-card-actions class="modal-actions">
+          <v-btn color="success" class="btn-success" @click="createEvent">Salvar</v-btn>
+          <v-btn color="error" class="btn-error" @click="closeDialog">Cancelar</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
 
     <!-- Lista de Eventos -->
     <v-row class="mt-4">
-      <v-col v-for="event in events" :key="event.id" cols="12">
-        <v-card class="mb-4">
-          <v-card-title>{{ event.name }}</v-card-title>
-          <v-card-subtitle>{{ event.type }}</v-card-subtitle>
-          <v-card-text>
-            <p>Artistas: {{ event.artists.join(', ') }}</p>
-            <p>Data: {{ event.date }}</p>
-            <p>Sessão: {{ event.session }}</p>
-            <p>Capacidade: {{ event.capacity }}</p>
+      <v-col v-for="event in events" :key="event.id" cols="12" md="6" lg="4">
+        <v-card class="event-card">
+          <v-card-title class="event-title">{{ event.name }}</v-card-title>
+          <v-card-subtitle class="event-subtitle">{{ event.type }}</v-card-subtitle>
+          <v-card-text class="event-content">
+            <p><strong>Artistas:</strong> {{ event.artists.join(', ') }}</p>
+            <p><strong>Data:</strong> {{ event.date }}</p>
+            <p><strong>Sessão:</strong> {{ event.session }}</p>
+            <p><strong>Capacidade:</strong> {{ event.capacity }}</p>
           </v-card-text>
         </v-card>
       </v-col>
@@ -71,16 +70,13 @@ export default defineComponent({
     };
   },
   methods: {
-    // Abre o modal
     openDialog() {
       this.dialog = true;
     },
-    // Fecha o modal e reseta o formulário
     closeDialog() {
       this.dialog = false;
       this.resetForm();
     },
-    // Busca todos os eventos usando o service
     async fetchEvents() {
       try {
         this.events = await EventService.fetchEvents();
@@ -101,33 +97,22 @@ export default defineComponent({
           capacity: this.form.capacity,
         };
 
-        // Cria o evento no backend
-        const createdEvent = await EventService.createEvent(newEvent);
-
-        // Atualiza a lista de eventos para refletir o estado atual do servidor
+        await EventService.createEvent(newEvent);
         this.fetchEvents();
-
-        // Reseta o formulário e fecha o modal
         this.resetForm();
         this.closeDialog();
       } catch (error) {
         console.error("Erro ao criar evento:", error);
       }
     },
-
     async deleteEvent(id: number) {
       try {
-        // Exclui o evento no backend
         await EventService.deleteEvent(id);
-
-        // Atualiza a lista de eventos para refletir a exclusão
         this.fetchEvents();
       } catch (error) {
         console.error("Erro ao deletar evento:", error);
       }
     },
-
-    // Reseta o formulário
     resetForm() {
       this.form = {
         name: "",
@@ -140,40 +125,71 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.fetchEvents(); // Busca eventos ao montar o componente
+    this.fetchEvents();
   },
 });
 </script>
 
-
 <style scoped>
-/* Título */
 .title {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   color: #3f51b5;
   text-align: center;
-  margin-bottom: 20px;
 }
 
-/* Subtítulo */
-.subtitle {
-  font-size: 20px;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-/* Lista de Eventos */
-.event-list-item {
-  padding: 15px;
-  border-bottom: 1px solid #eee;
-}
-
-.event-list-item:hover {
-  background-color: #f9f9f9;
-}
-
-.v-btn {
+.primary-title {
   color: #3f51b5;
+  font-weight: bold;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.btn-primary {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.btn-success {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn-error {
+  background-color: #f44336;
+  color: white;
+}
+
+.event-card {
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  padding: 16px;
+  transition: 0.3s;
+}
+
+.event-card:hover {
+  transform: scale(1.02);
+}
+
+.event-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+.event-subtitle {
+  font-size: 16px;
+  color: #757575;
+}
+
+.event-content p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #424242;
 }
 </style>
