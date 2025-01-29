@@ -1,4 +1,5 @@
 import api from "./api";
+import Event from "@/model/event";
 
 // URL base do JSON Server
 const API_URL = "http://localhost:3000/events";
@@ -29,4 +30,9 @@ export default {
     const response = await api.delete(`${API_URL}/${id}`);
     return response.data;
   },
+  // Busca os detalhes de um evento pelo ID
+  async getEventById(eventId: string): Promise<Event> {
+  const response = await api.get(`${API_URL}/${eventId}`);
+  return response.data;
+}
 };

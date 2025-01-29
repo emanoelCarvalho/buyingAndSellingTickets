@@ -1,13 +1,20 @@
 {
   "clients": [
     {
-      "id": "6",
-      "name": "Cleiton Rasta",
-      "address": "OLha a Pedra(de gelo)",
-      "cpf": "0000000000",
-      "dateOfBirth": "20/20/2001",
-      "agreement": true,
+      "id": "afa6",
+      "name": "Cleiton",
+      "address": "email",
+      "cpf": "1234",
+      "dateOfBirth": "11/03/2002",
       "hasConvenio": false
+    },
+    {
+      "id": "95a7",
+      "name": "Kamila",
+      "address": "email2",
+      "cpf": "4123",
+      "dateOfBirth": "22/11/2002",
+      "hasConvenio": true
     }
   ],
   "events": [

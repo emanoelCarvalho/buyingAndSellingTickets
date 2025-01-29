@@ -35,7 +35,7 @@ class Queue implements IQueue {
   public getInQueue(client: Client): void {
     const newNode = new NodeOfQueue(client);
 
-    if (!this.start || newNode.client.agreement) {
+    if (!this.start || newNode.client.hasConvenio) {
       // Se a fila estiver vazia ou se o cliente tem prioridade, ele vai para o início da fila
       newNode.next = this.start;
       this.start = newNode;

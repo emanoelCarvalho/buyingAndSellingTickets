@@ -3,6 +3,7 @@ import EventForm from '@/components/EventForm.vue'
 import BuyTicket from '@/components/BuyTicket.vue'
 import Home from '@/components/Home.vue'
 import Register from '@/components/Register.vue'
+import QueueView from '@/components/QueueView.vue'
 
 
 const router = createRouter({
@@ -19,7 +20,7 @@ const router = createRouter({
       component: BuyTicket,
     },
     {
-      path: "/home",
+      path: "/",
       name: "Home",
       component: Home,
     },
@@ -27,6 +28,11 @@ const router = createRouter({
       path: "/register",
       name: "Register",
       component: Register,
+    },
+    {
+      path: "/queue/:eventId",
+      name: "QueueView",
+      component: QueueView,
     }
   ],
 })
