@@ -1,3 +1,5 @@
+import Client from "./client";
+
 class Event {
   private static countId = 1;
   private id: number;
@@ -7,6 +9,7 @@ class Event {
   public date: Date;
   public session: string;
   public capacity: number;
+  public queue: Client[] = [];
 
   constructor(
     name: string,
@@ -23,6 +26,10 @@ class Event {
     this.date = date;
     this.session = session;
     this.capacity = capacity;
+  }
+
+  public getId(): number {
+    return this.id;
   }
 
   public getName(): string {
@@ -71,6 +78,20 @@ class Event {
 
   public setCapacity(capacity: number): void {
     this.capacity = capacity;
+  }
+
+  public addClientToQueue(client: Client): void {
+    this.queue.push(client);
+  }
+
+  // Método para remover cliente da fila
+  public removeClientFromQueue(client: Client): void {
+    this.queue = this.queue.filter(c => c !== client);
+  }
+
+  // Método para acessar a fila
+  public getQueue(): Client[] {
+    return this.queue;
   }
 
   public toString(): string {

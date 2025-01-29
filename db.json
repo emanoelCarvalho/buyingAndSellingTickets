@@ -1,0 +1,137 @@
+{
+  "clients": [
+    {
+      "id": "afa6",
+      "name": "Cleiton",
+      "address": "email",
+      "cpf": "1234",
+      "dateOfBirth": "11/03/2002",
+      "hasConvenio": false
+    },
+    {
+      "id": "95a7",
+      "name": "Kamila",
+      "address": "email2",
+      "cpf": "4123",
+      "dateOfBirth": "22/11/2002",
+      "hasConvenio": true
+    },
+    {
+      "id": "7ec4",
+      "name": "Emanoel",
+      "address": "email3",
+      "cpf": "4567",
+      "dateOfBirth": "02/02/2002",
+      "hasConvenio": true
+    },
+    {
+      "id": "eddd",
+      "name": "Gean",
+      "address": "email5",
+      "cpf": "8963",
+      "dateOfBirth": "01/01/2000",
+      "hasConvenio": true
+    },
+    {
+      "id": "32e0",
+      "name": "Mauriciélia",
+      "address": "ruab",
+      "cpf": "1111",
+      "dateOfBirth": "01/01/1999",
+      "hasConvenio": true
+    }
+  ],
+  "events": [
+    {
+      "id": "2288",
+      "name": "Show do Skillet",
+      "type": "Música",
+      "artists": [
+        "Skillet"
+      ],
+      "date": "2025-01-30",
+      "session": "Noite",
+      "capacity": "5000"
+    },
+    {
+      "id": "1797",
+      "name": "Show do Coldplay",
+      "type": "Música",
+      "artists": [
+        "ColdPlay"
+      ],
+      "date": "2025-01-08",
+      "session": "Noite",
+      "capacity": "50000"
+    },
+    {
+      "id": "f99d",
+      "name": "Evanecence",
+      "type": "Música",
+      "artists": [
+        "Evanecence"
+      ],
+      "date": "2025-01-24",
+      "session": "Noite",
+      "capacity": "100000"
+    },
+    {
+      "id": "5b55",
+      "name": "Slipknot",
+      "type": "Música",
+      "artists": [
+        "Corey Taylor"
+      ],
+      "date": "2025-10-11",
+      "session": "noite",
+      "capacity": "50000"
+    }
+  ],
+  "tickets": [
+    {
+      "id": "bhkortup6",
+      "clientId": "95a7",
+      "clientName": "Kamila",
+      "eventId": "f99d",
+      "eventName": "Evanecence",
+      "seat": "A2",
+      "isVip": true
+    },
+    {
+      "id": "17a73809-414f-49b8-975b-6ee26ea5674c",
+      "clientId": "7ec4",
+      "clientName": "Emanoel",
+      "eventId": 2,
+      "eventName": "Show do Coldplay",
+      "seat": "A1",
+      "isVip": true
+    },
+    {
+      "id": "ecf20df3-8b26-4408-b2ec-5f2613695440",
+      "clientId": "eddd",
+      "clientName": "Gean",
+      "eventId": 6,
+      "eventName": "Evanecence",
+      "seat": "B1",
+      "isVip": true
+    },
+    {
+      "id": "85ed56ad-7ac1-4924-8b26-777de4329824",
+      "clientId": "32e0",
+      "clientName": "Mauriciélia",
+      "eventId": 2,
+      "eventName": "Show do Coldplay",
+      "seat": "C1",
+      "isVip": true
+    },
+    {
+      "id": "d85fb081-7572-4c2b-ad2e-fdecef76d961",
+      "clientId": "32e0",
+      "clientName": "Mauriciélia",
+      "eventId": 2,
+      "eventName": "Show do Coldplay",
+      "seat": "C1",
+      "isVip": true
+    }
+  ]
+}

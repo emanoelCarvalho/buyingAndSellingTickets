@@ -5,21 +5,25 @@ class Client {
   public address: string;
   public cpf: string;
   public dateOfBirth: string;
-  public agreement: boolean;
+  public hasConvenio: boolean;
 
   constructor(
     name: string,
     address: string,
     cpf: string,
     dateOfBirth: string,
-    agreement: boolean
+    hasConvenio: boolean, 
   ) {
     this.id = Client.countId++;
     this.name = name;
     this.address = address;
     this.cpf = cpf;
     this.dateOfBirth = dateOfBirth;
-    this.agreement = agreement;
+    this.hasConvenio = hasConvenio; 
+  }
+
+  public getId(): number { 
+    return this.id;
   }
 
   public getName(): string {
@@ -54,16 +58,16 @@ class Client {
     this.dateOfBirth = dateOfBirth;
   }
 
-  public getAgreement(): boolean {
-    return this.agreement;
+  public getHasConvenio(): boolean {
+    return this.hasConvenio;
   }
 
-  public setAgreement(agreement: boolean): void {
-    this.agreement = agreement;
+  public setHasConvenio(hasConvenio: boolean): void {
+    this.hasConvenio = hasConvenio;
   }
 
   public toString(): string {
-    return `Client: ${this.id} - ${this.name} - ${this.address} - ${this.cpf} - ${this.dateOfBirth} - ${this.agreement}`;
+    return `Client: ${this.id} - ${this.name} - ${this.address} - ${this.cpf} - ${this.dateOfBirth} - ${this.hasConvenio}`;
   }
 }
 
